@@ -1,0 +1,18 @@
+{
+    "products": [
+        {
+            "id": 1,
+            "name": "T-shirt"
+        },
+        {
+            "id": 2,
+            "name": "Joota"
+        }
+    ],
+    "users": [
+        {
+            "id": 1,
+            "name": "laxya"
+        }
+    ]
+}
