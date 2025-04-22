@@ -1,0 +1,32 @@
+{
+    "products": [
+        {
+            "id": 1,
+            "name": "T-shirt"
+        },
+        {
+            "id": 2
+        },
+        {
+            "id": 2,
+            "name": "Electronics"
+        },
+        {
+            "id": 2,
+            "name": "Electronics"
+        },
+        {
+            "id": 2,
+            "name": "Electronics"
+        }
+    ],
+    "users": [
+        {
+            "id": 1,
+            "name": "laxya"
+        },
+        null
+    ],
+    "carts":[],
+    "orders":[]
+}
