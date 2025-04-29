@@ -76,7 +76,7 @@ const createUser = async (req, res) => {
             isAlive
         })
 
-        await newUser.save();
+        // await newUser.save();
 
 
         res.status(201).json({

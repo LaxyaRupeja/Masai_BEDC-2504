@@ -8,7 +8,6 @@ const Users = [{
     name: "Laxya",
     age: 22,
     phoneNumber: "70142312231",
-    alsdfkjadsf:'asdfsdf'
 }, {
     name: "Laxya",
     age: 22,
@@ -32,5 +31,8 @@ const POSt = [
                 ]
             }
         ]
+    },
+    {
+        title:"alsijdf"
     }
 ]

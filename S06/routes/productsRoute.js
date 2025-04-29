@@ -10,7 +10,7 @@ const { entryMiddleware } = require("../middlewares/entryMiddleware");
 
 productRouter.get("/", (req, res) => {
     console.log("MEWTHOD",req.method)
-    const data = JSON.parse(fs.readFileSync("./db.json"));
+    // const data = JSON.parse(fs.readFileSync("./db.json"));
 
     // DATA WE CAN't READ -> (JSON.parse()) -> Data that we can read    
     res.send(data.products);

@@ -76,7 +76,7 @@ const createUser = async (req, res) => {
             isAlive
         })
 
-        // await newUser.save();
+        await newUser.save();
 
 
         res.status(201).json({
@@ -119,20 +119,20 @@ const createMultipleUsers = async (req, res) => {
 const getAllUsers = async (req, res) => {
     try {
 
-        // const {
-        //     startAge,
-        //     endAge
-        // } = req.query;
-
         const {
-            name
+            startAge,
+            endAge
         } = req.query;
 
-        const searchTerm = name;
+        // const {
+        //     name
+        // } = req.query;
 
-        const users = await userModel.find({
-            name:searchTerm
-        });
+        // const searchTerm = name;
+
+        // const users = await userModel.find({
+        //     name:searchTerm
+        // });
 
         // const age = 30;
 
@@ -143,12 +143,12 @@ const getAllUsers = async (req, res) => {
         // const startAge = 20;
         // const endAge = 40;
 
-        // const users = await userModel.find({
-        //     $and: [
-        //         { age: { $gt: startAge } },
-        //         { age: { $lt: endAge } }
-        //     ]
-        // })
+        const users = await userModel.find({
+            $and: [
+                { age: { $gt: startAge } },
+                { age: { $lt: endAge } }
+            ]
+        })
 
         res.status(200).json({
             users,
@@ -193,8 +193,8 @@ const updateUserById = async (req, res) => {
         const updatedUser = await userModel.findByIdAndUpdate(id, {
             name,
             age
-        },{
-            new:true
+        }, {
+            new: true
         });
 
         res.status(200).json({
@@ -208,11 +208,63 @@ const updateUserById = async (req, res) => {
     }
 }
 
+const deleteUserByName = async (req, res) => {
+    try {
+
+        const { name } = req.params;
+
+        const deletedUser = await userModel.deleteOne({ name });
+
+        res.status(200).json({
+            deletedUser
+        })
+
+    } catch (error) {
+        res.status(404).json({
+            message: "something went wrong"
+        })
+    }
+}
+
+const deleteUserById = async (req,res) => {
+    try {
+
+        const { id } = req.params;
+
+        const deleteUser = await userModel.findByIdAndDelete(id);
+
+        res.json({
+            deleteUser
+        })
+
+        
+    } catch (error) {
+        res.status(404).json({
+            message:"something went wrong"
+        })
+    }
+}
+
+const findUserById = async (req,res) => {
+    const { id } = req.params;
+
+    const user = await userModel.findById(id);
+
+    res.json({
+        user
+    })
+
+}
+
+
 
 module.exports = {
     createUser,
     createMultipleUsers,
     getAllUsers,
     updateUserByName,
-    updateUserById
+    updateUserById,
+    deleteUserByName,
+    deleteUserById,
+    findUserById
 }

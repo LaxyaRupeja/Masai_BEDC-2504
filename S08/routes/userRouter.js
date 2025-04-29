@@ -5,6 +5,8 @@ const userRouter = express.Router();
 
 userRouter.post("/", createUser)
 
+userRouter.post("/multiple",)
+
 
 module.exports = {
     userRouter
