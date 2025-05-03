@@ -2,7 +2,7 @@ const mongoose = require("mongoose")
 
 const connectToMongoDB = async () => {
     try {
-        await mongoose.connect("mongodb+srv://ishaan:lFm5zd35sJUkQQLl@test.j6qmfgv.mongodb.net/mongoose");
+        await mongoose.connect("");
         console.log("Database is connected successfully")
     }
     catch (err) {
