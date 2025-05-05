@@ -20,6 +20,10 @@ const userSchema = new mongoose.Schema({
     postIds:{
         type: [mongoose.Schema.Types.ObjectId],
         ref:"Post"
+    },
+    coursesIds:{
+        type:[mongoose.Schema.Types.ObjectId],
+        ref:"Course"
     }
 })
 

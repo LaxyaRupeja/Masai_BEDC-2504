@@ -1,6 +1,7 @@
 const { Post } = require("../models/postModel");
 const { Profile } = require("../models/profileModel");
 const { User } = require("../models/userModel");
+const { Course } = require("../models/courseModel");
 
 const userRouter = require("express").Router();
 
@@ -51,7 +52,7 @@ userRouter.get("/", async (req, res) => {
     // Sigle
     // const users = await User.find().populate("profileId");
     // Multiple 
-    const users = await User.find().populate(["profileId","postIds"]);
+    const users = await User.find().populate(["profileId", "postIds","coursesIds"]);
 
     res.json(users);
 })
@@ -88,6 +89,45 @@ userRouter.post("/post/:userId", async (req, res) => {
 
 })
 
+
+userRouter.post("/course", async (req, res) => {
+    try {
+        
+
+    const newCourse = await Course.create({
+        ...req.body
+    })
+
+    res.json(newCourse);
+} catch (error) {
+ console.log(error);
+ res.send("Something went wrong")       
+}
+})
+
+userRouter.post("/applyToCourse", async (req, res) => {
+    const {
+        courseId,
+        userId
+    } = req.body;
+
+    const course = await Course.findById(courseId);
+
+    const user = await User.findById(userId);
+
+    course.users.push(userId);
+
+    user.coursesIds.push(courseId);
+
+    await user.save();
+    await course.save();
+
+    res.json({
+        course,
+        user
+    })
+
+})
 
 
 
