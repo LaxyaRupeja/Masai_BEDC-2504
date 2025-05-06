@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const authMiddleware = require("./middlewares/authMiddleware");
 require('dotenv').config();
 
 const connectDB = require('./config/db');
@@ -15,7 +16,12 @@ app.use(express.json());
 
 // Routes
 const todoRoutes = require('./routes/todo.routes');
-app.use('/api/todos', todoRoutes);
+const userRouter = require('./routes/user.routes');
+
+
+app.use('/api/todos', authMiddleware,todoRoutes);
+
+app.use("/api/user",userRouter)
 
 // Home route
 app.get('/', (req, res) => {

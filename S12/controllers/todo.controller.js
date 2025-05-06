@@ -1,9 +1,13 @@
 const Todo = require('../models/todo.model');
+const jwt = require("jsonwebtoken");
 
 // Get all todos
 const getAllTodos = async (req, res) => {
   try {
-    const todos = await Todo.find();
+    console.log("THIS IS MY USER",req.user);
+    const todos = await Todo.find({
+      userId:req.user.id
+    });
     res.status(200).json(todos);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -26,7 +30,10 @@ const getTodoById = async (req, res) => {
 // Create a new todo
 const createTodo = async (req, res) => {
   try {
-    const newTodo = new Todo(req.body);
+    const newTodo = new Todo({
+      ...req.body,
+      userId:req.user.id
+    });
     const savedTodo = await newTodo.save();
     res.status(201).json(savedTodo);
   } catch (error) {
