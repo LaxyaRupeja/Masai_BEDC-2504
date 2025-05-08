@@ -1,0 +1,131 @@
+{
+	"info": {
+		"_postman_id": "a1b2c3d4-e5f6-7890",
+		"name": "Todo API Collection",
+		"description": "Collection for Todo API endpoints with sample data",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get All Todos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/todos",
+					"protocol": "http",
+					"host": ["localhost"],
+					"port": "3000",
+					"path": ["api", "todos"]
+				},
+				"description": "Get all todos from the database"
+			}
+		},
+		{
+			"name": "Get Single Todo",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/todos/:id",
+					"protocol": "http",
+					"host": ["localhost"],
+					"port": "3000",
+					"path": ["api", "todos", ":id"],
+					"variable": [
+						{
+							"key": "id",
+							"value": "todo_id_here",
+							"description": "ID of the todo to fetch"
+						}
+					]
+				},
+				"description": "Get a single todo by ID"
+			}
+		},
+		{
+			"name": "Create Todo",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Complete Project Documentation\",\n    \"description\": \"Write comprehensive documentation for the Todo API project\",\n    \"status\": \"pending\",\n    \"dueDate\": \"2024-03-31\",\n    \"priority\": \"high\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/todos",
+					"protocol": "http",
+					"host": ["localhost"],
+					"port": "3000",
+					"path": ["api", "todos"]
+				},
+				"description": "Create a new todo item"
+			}
+		},
+		{
+			"name": "Update Todo",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"status\": \"completed\",\n    \"priority\": \"medium\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/todos/:id",
+					"protocol": "http",
+					"host": ["localhost"],
+					"port": "3000",
+					"path": ["api", "todos", ":id"],
+					"variable": [
+						{
+							"key": "id",
+							"value": "todo_id_here",
+							"description": "ID of the todo to update"
+						}
+					]
+				},
+				"description": "Update an existing todo item"
+			}
+		},
+		{
+			"name": "Delete Todo",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/todos/:id",
+					"protocol": "http",
+					"host": ["localhost"],
+					"port": "3000",
+					"path": ["api", "todos", ":id"],
+					"variable": [
+						{
+							"key": "id",
+							"value": "todo_id_here",
+							"description": "ID of the todo to delete"
+						}
+					]
+				},
+				"description": "Delete a todo item"
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:3000",
+			"type": "string"
+		}
+	]
+} 
